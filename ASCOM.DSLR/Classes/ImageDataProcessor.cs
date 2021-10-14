@@ -222,7 +222,8 @@ namespace ASCOM.DSLR.Classes
                  int i1 = NativeMethods.libraw_COLOR(data, y, 1);
                  ushort* ptr = (ushort*)((byte*)dataStructure.image.ToPointer() + width * 8 * y);
 
-                 for (int x = 0; x < width - xoffs; x += 2)
+                 //                 for (int x = 0; x < width - xoffs; x += 2) 
+                 for (int x = 0; x < width - xoffs - 1; x += 2)//work to BGGR senser, or pixels[x + xoffs + 1, y + yoffs] out of bounds  
                  {
                      pixels[x + xoffs, y + yoffs] = *(ptr + i0);
                      ptr += 4;
